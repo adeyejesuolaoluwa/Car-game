@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#080b10" />
+    <meta name="description" content="NITRO X — take the wheel in a 3D street racing game." />
+    <title>NITRO X — Street Racing</title>
+  </head>
+  <body>
+    <main id="game">
+      <div id="scene" aria-label="Interactive 3D racing game"></div>
+      <div class="vignette"></div>
+
+      <section id="lobby" class="screen">
+        <div class="brand"><span class="brand-mark">N</span><span>NITRO <b>X</b></span><i>RACING DIVISION</i></div>
+        <div class="lobby-content">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="live-dot"></span> STREET RACING // SEASON 01</p>
+            <h1>OWN THE<br /><em>APEX.</em></h1>
+            <p class="hero-subtitle">The city is yours. The finish line isn't.</p>
+            <div class="garage-preview">
+              <span class="preview-label">YOUR DRIVER</span>
+              <strong id="driver-level">ROOKIE · LVL 1</strong>
+              <span id="driver-wallet">◈ 1,250 CR</span>
+            </div>
+          </div>
+          <div class="setup-panel">
+            <div class="panel-heading"><span>01 / RACE SETUP</span><span class="panel-line"></span><span>3 MIN</span></div>
+            <div class="choice-label">EVENT</div>
+            <div id="mode-options" class="choice-grid modes">
+              <button class="choice active" data-mode="race"><span>01</span><b>QUICK RACE</b><small>3 LAPS · 3 RIVALS</small></button>
+              <button class="choice" data-mode="time"><span>02</span><b>TIME TRIAL</b><small>SOLO · 3 LAPS</small></button>
+              <button class="choice" data-mode="drift"><span>03</span><b>DRIFT ATTACK</b><small>CHASE THE SCORE</small></button>
+              <button class="choice" data-mode="free"><span>04</span><b>FREE DRIVE</b><small>NO RULES · NO CLOCK</small></button>
+              <button class="choice wide" data-mode="career"><span>05</span><b>CAREER LADDER</b><small>WIN 3 EVENTS · UNLOCK APEX RS</small></button>
+            </div>
+            <section id="career-progress" class="career-progress" aria-live="polite">
+              <div class="career-copy"><span>CAREER // ROOKIE SERIES</span><strong id="career-stage">01 · NEON SPRINT</strong></div>
+              <div class="career-track"><i id="career-fill"></i></div>
+              <small id="career-count">0 / 3 WINS · APEX RS LOCKED</small>
+            </section>
+            <div class="setup-columns">
+              <div><div class="choice-label">CIRCUIT</div><div id="track-options" class="track-options"></div></div>
+              <div><div class="choice-label">YOUR CAR</div><div id="car-options" class="car-options"></div></div>
+            </div>
+            <div class="setup-footer">
+              <label class="difficulty-label" for="difficulty">AI PACE <select id="difficulty"><option value="easy">EASY</option><option value="normal" selected>NORMAL</option><option value="hard">HARD</option><option value="pro">PRO</option></select></label>
+              <button id="start-button" class="start-button">START ENGINE <span>→</span></button>
+            </div>
+            <div class="color-row"><span>PAINT</span><div id="color-options" class="swatches"></div><span class="garage-note">GARAGE · 01 / 06</span></div>
+            <details class="garage-upgrades">
+              <summary>VEHICLE UPGRADES <span id="upgrade-car-name">VOLT GT</span></summary>
+              <div id="upgrade-options" class="upgrade-options"></div>
+            </details>
+            <details class="driving-settings">
+              <summary>DRIVING SETTINGS <span>ASSISTS · CONTROLS</span></summary>
+              <div class="settings-grid">
+                <label class="assist-setting"><input id="assist-toggle" type="checkbox" checked /> BEGINNER ASSISTS <small>Stability and corner-speed help</small></label>
+                <label class="range-setting">STEERING SENSITIVITY <output id="sensitivity-value">100%</output><input id="sensitivity-setting" type="range" min="60" max="140" step="5" value="100" /></label>
+                <label class="range-setting">TOUCH BUTTON SIZE <output id="touch-size-value">100%</output><input id="touch-size-setting" type="range" min="80" max="130" step="5" value="100" /></label>
+                <label class="throttle-setting">TOUCH ACCELERATOR<select id="throttle-setting"><option value="hold">HOLD TO DRIVE</option><option value="toggle">TAP TO TOGGLE</option></select></label>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div class="lobby-bottom"><span>WASD / ARROWS TO DRIVE <b>·</b> SHIFT NITRO <b>·</b> SPACE DRIFT</span><button id="tutorial-button" class="tutorial-replay">HOW TO DRIVE ↗</button><span>BUILT FOR THE BOLD <b>↗</b></span></div>
+      </section>
+
+      <section id="race-hud" class="hud hidden">
+        <header class="hud-top">
+          <div class="race-brand"><span class="mini-mark">N</span> NITRO <b>X</b></div>
+          <div class="event-label"><span id="hud-track">NEON DISTRICT</span><small id="hud-mode">QUICK RACE</small></div>
+          <div class="race-controls">
+            <button id="camera-button" class="icon-button" aria-label="Change camera" title="Camera (C)">CAM <b id="camera-name">CHASE</b></button>
+            <button id="sound-button" class="icon-button" aria-label="Toggle engine sound">SOUND <b id="sound-state">ON</b></button>
+            <button id="pause-button" class="icon-button" aria-label="Pause race">PAUSE <b>Ⅱ</b></button>
+          </div>
+        </header>
+        <div class="race-readout">
+          <div class="position-block"><span class="position-number" id="position">1</span><span class="position-total">/ <i id="opponent-count">4</i></span><span class="position-caption">POSITION</span></div>
+          <div class="lap-block"><span class="lap-label">LAP</span><strong id="lap">1<span> / 3</span></strong><div class="lap-track"><i id="lap-fill"></i></div></div>
+          <div id="timer-block" class="timer-block"><small>RACE TIME</small><strong id="timer">00:00.00</strong><span id="race-status">GET READY</span></div>
+        </div>
+        <div class="speed-panel">
+          <div class="speed-reading"><span id="speed">000</span><small>KM/H</small></div>
+          <div class="gear-reading"><small>GEAR</small><b id="gear">1</b></div>
+        </div>
+        <div class="boost-panel"><span>NITRO</span><div class="boost-meter"><i id="boost-fill"></i></div><b id="boost-percent">100%</b></div>
+        <div class="map-panel"><div class="map-heading">CIRCUIT MAP <span>● LIVE</span></div><canvas id="minimap" width="220" height="160"></canvas></div>
+        <div id="drift-score" class="drift-score hidden"><small>DRIFT SCORE</small><strong>0</strong><span>CHAIN x1</span></div>
+        <div id="countdown" class="countdown hidden">3</div>
+        <div id="toast" class="toast hidden"></div>
+        <aside id="tutorial-card" class="tutorial-card hidden" aria-live="polite">
+          <div class="tutorial-heading"><span>DRIVING SCHOOL</span><span id="tutorial-progress">01 / 05</span></div>
+          <strong id="tutorial-title">GET MOVING</strong>
+          <p id="tutorial-copy">Hold W or the GO button to accelerate.</p>
+          <button id="tutorial-skip" class="tutorial-action">SKIP TUTORIAL</button>
+        </aside>
+        <div id="pause-screen" class="pause-screen hidden">
+          <div class="pause-card"><span class="eyebrow">RACE PAUSED</span><h2>TAKE A BREATHER.</h2><p>Your race is waiting right where you left it.</p><button id="resume-button" class="start-button">RESUME RACE →</button><button id="pause-garage-button" class="secondary-button">RETURN TO GARAGE</button></div>
+        </div>
+        <div class="controls-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> DRIVE <kbd>⇧</kbd> NITRO <kbd>SPACE</kbd> DRIFT <kbd>C</kbd> CAMERA</div>
+        <div class="mobile-controls" aria-label="Touch driving controls">
+          <div class="mobile-steering"><button data-control="left" aria-label="Steer left">◀</button><button data-control="right" aria-label="Steer right">▶</button></div>
+          <div class="mobile-pedals"><button data-control="nitro" class="touch-nitro">N₂O</button><button data-control="brake">BRAKE</button><button id="touch-accelerate" data-control="accelerate" class="touch-accelerate">GO</button><button data-control="drift">DRIFT</button></div>
+        </div>
+      </section>
+      <section id="result-screen" class="screen result-screen hidden">
+        <div class="result-card"><div class="eyebrow">RACE COMPLETE // NITRO X</div><div id="result-place" class="result-place">01 <small>ST</small></div><h2 id="result-title">CLEAN FINISH.</h2><p id="result-copy">The city knows your name.</p>        <div class="reward-row"><span>RACE REWARD</span><strong id="result-reward">+350 CR</strong><span id="result-xp">+120 XP</span></div><div id="career-result" class="career-result hidden"></div><div class="result-buttons"><button id="again-button" class="start-button">RACE AGAIN →</button><button id="garage-button" class="secondary-button">GARAGE</button></div></div>
+      </section>
+    </main>
+    <script type="module" src="/src/game.js"></script>
+  </body>
+</html>

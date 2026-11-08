@@ -1,0 +1,32 @@
+.driving-settings{margin-top:12px;border-top:1px solid #252e35;padding-top:10px;font:9px var(--mono);letter-spacing:1px;color:#8b98a0}
+.driving-settings summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.driving-settings summary::-webkit-details-marker{display:none}
+.driving-settings summary:after{content:"+";color:var(--blue)}
+.driving-settings[open] summary:after{content:"−"}
+.driving-settings summary span{color:#57646c;font-size:8px}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;padding:12px 0 2px}
+.assist-setting,.range-setting,.throttle-setting{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px;color:#d4dadd;font-size:9px}
+.assist-setting input{accent-color:var(--blue);width:14px;height:14px;margin:0}
+.assist-setting small{grid-column:2/4;color:#74818a;font-size:8px;letter-spacing:.2px}
+.range-setting{grid-template-columns:1fr auto}
+.range-setting output{color:var(--blue)}
+.range-setting input{grid-column:1/3;width:100%;height:13px;accent-color:var(--blue)}
+.throttle-setting{grid-template-columns:1fr}
+.throttle-setting select{background:#121920;border:1px solid #303a41;color:#f5f7f8;padding:6px;font:8px var(--mono);letter-spacing:.4px}
+.tutorial-replay{background:transparent;border:0;color:var(--blue);font:9px var(--mono);letter-spacing:1px;cursor:pointer}
+.tutorial-replay:hover{color:#fff}
+.tutorial-card{position:absolute;left:34px;bottom:40px;width:min(310px,calc(100vw - 30px));padding:15px 17px;background:rgba(8,14,19,.9);border:1px solid #43d9ff80;box-shadow:0 12px 36px #0007;backdrop-filter:blur(8px);pointer-events:auto}
+.tutorial-heading{display:flex;justify-content:space-between;color:var(--blue);font:8px var(--mono);letter-spacing:1.5px}
+.tutorial-heading span:last-child{color:#89969e}
+.tutorial-card strong{display:block;margin-top:8px;font-size:20px;letter-spacing:.8px}
+.tutorial-card p,.pause-card p{margin:4px 0 11px;color:#a9b5bc;font-size:13px}
+.tutorial-action{border:0;padding:0;background:transparent;color:var(--blue);font:8px var(--mono);letter-spacing:1px;cursor:pointer}
+.pause-screen{position:absolute;inset:0;z-index:5;display:grid;place-items:center;background:rgba(4,8,11,.78);backdrop-filter:blur(7px);pointer-events:auto}
+.pause-card{width:min(380px,calc(100vw - 32px));padding:26px;border:1px solid #3b4851;background:#0d141a}
+.pause-card h2{margin:10px 0 5px;font-size:35px}
+.pause-card .start-button,.pause-card .secondary-button{display:block;width:100%;margin-top:9px}
+.mobile-controls button{width:calc(59px * var(--touch-scale,1));height:calc(59px * var(--touch-scale,1))}
+.mobile-controls .touch-accelerate{width:calc(70px * var(--touch-scale,1));height:calc(70px * var(--touch-scale,1))}
+.mobile-controls button.latched{outline:2px solid #fff;outline-offset:3px;box-shadow:0 0 18px #43d9ff8a}
+@media(max-width:850px){.tutorial-card{left:16px;bottom:100px;width:min(280px,calc(100vw - 32px))}.lobby-bottom{gap:10px}.tutorial-replay{font-size:8px;white-space:nowrap}}
+@media(max-width:620px){.driving-settings{margin-top:8px;padding-top:8px}.settings-grid{gap:8px 10px;padding-top:9px}.assist-setting,.range-setting,.throttle-setting{font-size:8px}.assist-setting small{font-size:7px}.tutorial-card{left:10px;bottom:82px;padding:11px 13px;width:min(260px,calc(100vw - 20px))}.tutorial-card strong{font-size:17px}.tutorial-card p{font-size:12px}.pause-card{padding:21px}.pause-card h2{font-size:29px}}
